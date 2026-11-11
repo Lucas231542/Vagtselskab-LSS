@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="VagtApp/VagtApp.csproj" />
+  <Project Path="VagtLib/VagtLib.csproj" Id="ce4ac9c1-48e5-4d69-aa40-1e0bd621cec9" />
 </Solution>
