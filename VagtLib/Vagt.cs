@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VagtLib
 {
-    internal class Vagt
-    {
+    public class Vagt
+    { 
     }
 }
