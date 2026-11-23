@@ -6,5 +6,6 @@ namespace VagtLib
 {
     public class Vagt
     { 
+
     }
 }
