@@ -6,6 +6,7 @@ namespace VagtLib
 {
     public class Vagt
     {
+        //properties
         public int VagtId { get; set; }
         public string Virksomhed { get; set; }
         public DateTime Dato { get; set; }
@@ -14,8 +15,10 @@ namespace VagtLib
         public string Beskrivelse { get; set; }
         public string Status { get; set; }
 
+              
         public Vagt(int vagtId, string virksomhed, DateTime dato, string startTid, string slutTid, string beskrivelse, string status)
         {
+            //tildeling af værdier 
             VagtId = vagtId;
             Virksomhed = virksomhed;
             Dato = dato;
