@@ -13,14 +13,14 @@ namespace VagtLib
         public string SlutTid { get; set; }
         public string Adresse { get; set; }
         public string KundensOpgaveBeskrivelse { get; set; }
-       
+        public string Virksomhed { get; set; }
         public string LSSBeskrivelse { get; set; }
 
         public string Krav { get; set; }
         public int AntalMedarbejder { get; set; }
 
               
-        public Vagt(int vagtId, DateTime dato, string startTid, string slutTid, string adresse, string kundensOpgaveBeskrivelse, string lSSBeskrivelse, string krav, int antalMedarbejder)
+        public Vagt(int vagtId, DateTime dato, string startTid, string slutTid, string adresse, string kundensOpgaveBeskrivelse, string virksomhed, string lSSBeskrivelse, string krav, int antalMedarbejder)
         {
             //tildeling af værdier 
             VagtId = vagtId;
@@ -29,6 +29,7 @@ namespace VagtLib
             SlutTid = slutTid;
             Adresse = adresse;
             KundensOpgaveBeskrivelse = kundensOpgaveBeskrivelse;
+            Virksomhed = virksomhed; 
             LSSBeskrivelse = lSSBeskrivelse;
             Krav = krav;
             AntalMedarbejder = antalMedarbejder;
