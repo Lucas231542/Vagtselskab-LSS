@@ -19,11 +19,13 @@ namespace VagtLib
             foreach (Vagt vagt in vagter)
             {
                 Console.WriteLine("Vagt ID: " + vagt.VagtId);
-                Console.WriteLine("Virksomhed: " + vagt.Virksomhed);
                 Console.WriteLine("Dato: " + vagt.Dato.ToShortDateString());
                 Console.WriteLine("Tid: " + vagt.StartTid + " - " + vagt.SlutTid);
-                Console.WriteLine("Beskrivelse: " + vagt.Beskrivelse);
-                Console.WriteLine("Status: " + vagt.Status); 
+                Console.WriteLine("Adresse: " + vagt.Adresse);
+                Console.WriteLine("KundensOpgaveBeskrivelse: " + vagt.KundensOpgaveBeskrivelse);
+                Console.WriteLine("LSSBeskrivelse: " + vagt.LSSBeskrivelse);
+                Console.WriteLine("Krav: " + vagt.Krav);
+                Console.WriteLine("AntalMedarbejder: " + vagt.AntalMedarbejder);
             }
         }
     }
