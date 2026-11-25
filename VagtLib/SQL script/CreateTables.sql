@@ -1,5 +1,6 @@
 ﻿Create Table vagtopgave(
 vagtId int primary key identity(1,1),
+Dato dateTime not null,
 starttid datetime not null,
 sluttid datetime not null,
 adresse nvarchar(50) not null,
@@ -14,6 +15,7 @@ Navn varchar(255) not null,
 Email varchar(255) not null,
 Brugernavn varchar(255) not null,
 Kodeord varchar(255) not null,
+Tlf varchar(20) not null,
 ErLeder bit not null,
 Ermedarbejder bit not null,
 Erkunde bit not null

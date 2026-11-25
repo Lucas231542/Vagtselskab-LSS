@@ -1,6 +1,49 @@
 ﻿@page
 @model Razor.Vagtselskab.Pages.VagtRapport_skrModel
+@inject global::VagtLib.IVagtRapportRepo VagtRapportRepo
 @{
 }
 
+<div class="row">
+    <div class="col-md-6">
+        <h2>Skriv Vagt Rapport</h2>
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Rapport"></label>
+                <select asp-for="Rapport" class="form-control">
+                    <option value="">Vælg aktivitetstype</option>
+
+                    @foreach (var type in Model.AktivitetTyper)
+                    {
+                        <option value="@type.AktivitetTypeId">@type.Navn</option>
+                    }
+                </select>
+                <span asp-validation-for="AktivitetTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rapport"></label>
+                <input asp-for="Rapport" class="form-control" />
+                <span asp-validation-for="Rapport" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SlutTid"></label>
+                <input asp-for="SlutTid" class="form-control" />
+                <span asp-validation-for="SlutTid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sted"></label>
+                <input asp-for="Sted" class="form-control" />
+                <span asp-validation-for="Sted" class="text-danger"></span>
+            </div>
+            <button asp-page-handler="Opret"
+                    type="submit"
+                    class="btn btn-primary">
+                Opret aktivitet
+
+            </button>
+
+
+			
+        </form>
+    </div>
 

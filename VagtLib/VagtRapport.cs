@@ -4,8 +4,9 @@ using System.Text;
 
 namespace VagtLib
 {
-    public class VagtRapportModel
+    public class VagtRapport
     {
     public int VagtRapportId { get; set; }
+    public string Rapport { get; set; }
     }
 }

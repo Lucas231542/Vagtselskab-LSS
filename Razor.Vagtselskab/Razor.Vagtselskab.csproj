@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VagtLib\VagtLib.csproj" />
+  </ItemGroup>
+
 </Project>
