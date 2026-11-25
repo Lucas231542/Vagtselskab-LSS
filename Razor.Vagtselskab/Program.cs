@@ -1,5 +1,10 @@
-var builder = WebApplication.CreateBuilder(args);
+using VagtLib.Lib;
+using Razor.Vagtselskab.Repositories;
 
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<DBConnecter>();
+builder.Services.AddScoped<VagtRepo>();
 // Add services to the container.
 builder.Services.AddRazorPages();
 
