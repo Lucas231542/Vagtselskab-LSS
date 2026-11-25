@@ -23,6 +23,7 @@ namespace VagtLib
                 Console.WriteLine("Tid: " + vagt.StartTid + " - " + vagt.SlutTid);
                 Console.WriteLine("Adresse: " + vagt.Adresse);
                 Console.WriteLine("KundensOpgaveBeskrivelse: " + vagt.KundensOpgaveBeskrivelse);
+                Console.WriteLine("Virksomhed: " + vagt.Virksomhed);
                 Console.WriteLine("LSSBeskrivelse: " + vagt.LSSBeskrivelse);
                 Console.WriteLine("Krav: " + vagt.Krav);
                 Console.WriteLine("AntalMedarbejder: " + vagt.AntalMedarbejder);
