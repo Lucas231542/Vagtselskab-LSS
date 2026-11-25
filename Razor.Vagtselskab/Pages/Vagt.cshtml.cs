@@ -36,7 +36,7 @@ namespace Razor.Vagtselskab.Pages
                 return NotFound();
             }
 
-            eksisterendeVagt.Medarbejder = Vagt.Medarbejder;
+           eksisterendeVagt.Virksomhed = Vagt.Virksomhed;  
             eksisterendeVagt.StartTid = Vagt.StartTid;
             eksisterendeVagt.SlutTid = Vagt.SlutTid;
 

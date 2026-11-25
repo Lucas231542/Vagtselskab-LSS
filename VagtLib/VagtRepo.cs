@@ -25,21 +25,24 @@ namespace Razor.Vagtselskab.Repositories
                 conn.Open();
 
                 string sql = @"INSERT INTO Vagter
-                (Medarbejder, Virksomhed, Dato, StartTid,
-                SlutTid, Beskrivelse, Status)
+                (Virksomhed, Dato, StartTid,
+                SlutTid, Adresse, KundensOpgaveBeskrivelse, LSSBeskrivelse, Krav, AntalMedarbejder)
                 VALUES
-                (@Medarbejder, @Virksomhed, @Dato, @StartTid,
-                @SlutTid, @Beskrivelse, @Status)";
+                (@Virksomhed, @Dato, @StartTid,
+                @SlutTid, @Adresse, @KundensOpgaveBeskrivelse, @LSSBeskrivelse, @Krav, @AntalMedarbejder)";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Medarbejder", vagt.Medarbejder);
+                    cmd.Parameters.AddWithValue("@VagtId", vagt.VagtId);
                     cmd.Parameters.AddWithValue("@Virksomhed", vagt.Virksomhed);
                     cmd.Parameters.AddWithValue("@Dato", vagt.Dato);
                     cmd.Parameters.AddWithValue("@StartTid", vagt.StartTid);
                     cmd.Parameters.AddWithValue("@SlutTid", vagt.SlutTid);
-                    cmd.Parameters.AddWithValue("@Beskrivelse", vagt.Beskrivelse);
-                    cmd.Parameters.AddWithValue("@Status", vagt.Status);
+                    cmd.Parameters.AddWithValue("@Adresse", vagt.Adresse);
+                    cmd.Parameters.AddWithValue("@KundensOpgaveBeskrivelse", vagt.KundensOpgaveBeskrivelse);
+                    cmd.Parameters.AddWithValue("@LSSBeskrivelse", vagt.LSSBeskrivelse);
+                    cmd.Parameters.AddWithValue("@Krav", vagt.Krav);
+                    cmd.Parameters.AddWithValue("@AntalMedarbejder", vagt.AntalMedarbejder);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -65,13 +68,16 @@ namespace Razor.Vagtselskab.Repositories
                         {
                             return new Vagt(
                                 (int)reader["VagtId"],
-                                reader["Medarbejder"].ToString(),
-                                reader["Virksomhed"].ToString(),
                                 (DateTime)reader["Dato"],
                                 reader["StartTid"].ToString(),
                                 reader["SlutTid"].ToString(),
-                                reader["Beskrivelse"].ToString(),
-                                reader["Status"].ToString()
+                                reader["Adresse"].ToString(),
+                                reader["KundensOpgaveBeskrivelse"].ToString(),
+                                reader["Virksomhed"].ToString(),
+                                reader["LSSBeskrivelse"].ToString(),
+                                reader["Krav"].ToString(),
+                                (int)reader["AntalMedarbejder"]
+
                             );
                         }
                     }
@@ -89,25 +95,30 @@ namespace Razor.Vagtselskab.Repositories
                 conn.Open();
 
                 string sql = @"UPDATE Vagter SET
-                Medarbejder = @Medarbejder,
                 Virksomhed = @Virksomhed,
                 Dato = @Dato,
                 StartTid = @StartTid,
                 SlutTid = @SlutTid,
-                Beskrivelse = @Beskrivelse,
+                Adresse = @Adresse,
+                KundensOpgaveBeskrivelse = @KundensOpgaveBeskrivelse,
+                LSSBeskrivelse = @LSSBeskrivelse,
+                Krav = @Krav,
+                AntalMedarbejder = @AntalMedarbejder
                 Status = @Status
                 WHERE VagtId = @VagtId";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@VagtId", vagt.VagtId);
-                    cmd.Parameters.AddWithValue("@Medarbejder", vagt.Medarbejder);
                     cmd.Parameters.AddWithValue("@Virksomhed", vagt.Virksomhed);
                     cmd.Parameters.AddWithValue("@Dato", vagt.Dato);
                     cmd.Parameters.AddWithValue("@StartTid", vagt.StartTid);
                     cmd.Parameters.AddWithValue("@SlutTid", vagt.SlutTid);
-                    cmd.Parameters.AddWithValue("@Beskrivelse", vagt.Beskrivelse);
-                    cmd.Parameters.AddWithValue("@Status", vagt.Status);
+                    cmd.Parameters.AddWithValue("@Adresse", vagt.Adresse);
+                    cmd.Parameters.AddWithValue("@KundensOpgaveBeskrivelse", vagt.KundensOpgaveBeskrivelse);
+                    cmd.Parameters.AddWithValue("@LSSBeskrivelse", vagt.LSSBeskrivelse);
+                    cmd.Parameters.AddWithValue("@Krav", vagt.Krav);
+                    cmd.Parameters.AddWithValue("@AntalMedarbejder", vagt.AntalMedarbejder);
 
                     cmd.ExecuteNonQuery();
                 }
