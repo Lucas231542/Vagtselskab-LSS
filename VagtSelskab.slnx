@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="Razor.Vagtselskab/Razor.Vagtselskab.csproj" Id="f7ec37cd-8f15-4e17-b4ff-8f95b5c49529" />
   <Project Path="VagtApp/VagtApp.csproj" />
   <Project Path="VagtLib/VagtLib.csproj" Id="ce4ac9c1-48e5-4d69-aa40-1e0bd621cec9" />
 </Solution>
