@@ -6,25 +6,32 @@ namespace VagtLib
 {
     public class Vagt
     {
+        //properties
         public int VagtId { get; set; }
-        public string Medarbejder { get; set; }
-        public string Virksomhed { get; set; }
         public DateTime Dato { get; set; }
         public string StartTid { get; set; }
         public string SlutTid { get; set; }
-        public string Beskrivelse { get; set; }
-        public string Status { get; set; }
+        public string Adresse { get; set; }
+        public string KundensOpgaveBeskrivelse { get; set; }
+       
+        public string LSSBeskrivelse { get; set; }
 
-        public Vagt(int vagtId, string medarbejder, string virksomhed, DateTime dato, string startTid, string slutTid, string beskrivelse, string status)
+        public string Krav { get; set; }
+        public int AntalMedarbejder { get; set; }
+
+              
+        public Vagt(int vagtId, DateTime dato, string startTid, string slutTid, string adresse, string kundensOpgaveBeskrivelse, string lSSBeskrivelse, string krav, int antalMedarbejder)
         {
+            //tildeling af værdier 
             VagtId = vagtId;
-            Medarbejder = medarbejder;
-            Virksomhed = virksomhed;
             Dato = dato;
             StartTid = startTid;
             SlutTid = slutTid;
-            Beskrivelse = beskrivelse;
-            Status = status;
+            Adresse = adresse;
+            KundensOpgaveBeskrivelse = kundensOpgaveBeskrivelse;
+            LSSBeskrivelse = lSSBeskrivelse;
+            Krav = krav;
+            AntalMedarbejder = antalMedarbejder;
         }
     }
 }
