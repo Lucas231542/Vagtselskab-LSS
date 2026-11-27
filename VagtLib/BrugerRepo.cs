@@ -36,7 +36,7 @@ namespace VagtLib
             using (SqlConnection conn = _db.GetConnection())
             {
                 conn.Open();
-                string sql = "SELECT BrugerId, Navn, Mail, Brugernavn, Adgangskode, Foedselsdato, ErLeder FROM Bruger";
+                string sql = "SELECT BrugerId, Navn, Email, Brugernavn, Adgangskode, Telefonnummer, ErLeder, ErMedarbejder, ErKunde FROM Bruger";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataReader r = cmd.ExecuteReader();
 
@@ -57,7 +57,7 @@ namespace VagtLib
             {
                 conn.Open();
                 string sql =
-                    "SELECT BrugerId, Navn, Mail, Brugernavn, Adgangskode, Foedselsdato, ErLeder FROM Bruger WHERE  BrugerId = @brugerId";
+                    "SELECT BrugerId, Navn, Email, Brugernavn, Adgangskode, Telefonnummer, ErLeder, ErMedarbejder, ErKunde FROM Bruger WHERE  BrugerId = @brugerId";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@BrugerId", brugerId);
                 SqlDataReader r = cmd.ExecuteReader();
@@ -78,7 +78,7 @@ namespace VagtLib
             {
                 conn.Open();
                 string sql =
-                    "SELECT BrugerId, Navn, Mail, Brugernavn, Adgangskode, Foedselsdato, ErLeder FROM Bruger WHERE Brugernavn = @Brugernavn AND Adgangskode = @Adgangskode ";
+                    "SELECT BrugerId, Navn, Email, Brugernavn, Adgangskode, Telefonnummer, ErLeder, ErMedarbejder, ErKunde FROM Bruger WHERE Brugernavn = @Brugernavn AND Adgangskode = @Adgangskode ";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Brugernavn", brugernavn);
                 cmd.Parameters.AddWithValue("@Adgangskode", adgangskode);
@@ -101,15 +101,17 @@ namespace VagtLib
             using (SqlConnection conn = _db.GetConnection())
             {
                 conn.Open();
-                string sql = " INSERT INTO Bruger (Navn, Mail, Brugernavn, Adgangskode, Foedselsdato, ErLeder)" +
-                             "VALUES (@Navn, @Mail, @Brugernavn, @Adgangskode, @Foedselsdato, @ErLeder)";
+                string sql = " INSERT INTO Bruger (Navn, Email, Brugernavn, Adgangskode, Telefonnummer, ErLeder, ErMedarbejder, ErKunde)" +
+                             "VALUES (@Navn, @Email, @Brugernavn, @Adgangskode, @Telefonnummer, @ErLeder, @ErMedarbejder, @ErKunde)";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Navn", bruger.Navn);
-                cmd.Parameters.AddWithValue("@Mail", bruger.Mail);
+                cmd.Parameters.AddWithValue("@Email", bruger.Email);
                 cmd.Parameters.AddWithValue("@Brugernavn", bruger.Brugernavn);
                 cmd.Parameters.AddWithValue("@Adgangskode", bruger.Adgangskode);
-                cmd.Parameters.AddWithValue("@Foedselsdato", bruger.Fødselsdato);
+                cmd.Parameters.AddWithValue("@Telefonnummer", bruger.Telefonnummer);
                 cmd.Parameters.AddWithValue("@ErLeder", bruger.ErLeder);
+                cmd.Parameters.AddWithValue("@ErMedarbejder", bruger.ErMedarbejder);
+                cmd.Parameters.AddWithValue("@ErKunde", bruger.ErKunde);
                 cmd.ExecuteNonQuery();
             }
         }
@@ -121,36 +123,23 @@ namespace VagtLib
             using (SqlConnection conn = _db.GetConnection())
             {
                 conn.Open();
-                string sql = "UPDATE Bruger SET Navn = @Navn, Mail =@Mail, Brugernavn = @Beugernavn," +
-                             "Adgangskode = @Adgangskode, Foedselsdato = @Foedselsdato, ErLeder = @ErLeder" +
+                string sql = "UPDATE Bruger SET Navn = @Navn, Email = @Email, Brugernavn = @Brugernavn," +
+                             "Adgangskode = @Adgangskode, Telefonnummer = @Telefonnummer, ErLeder = @ErLeder, ErMedarbejder = @ErMedarbejder, ErKunde = @ErKunde" +
                              "WHERE BrugerId = @BrugerId";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Navn", bruger.Navn);
-                cmd.Parameters.AddWithValue("@Mail", bruger.Mail);
-                cmd.Parameters.AddWithValue("@Beugernavn", bruger.Brugernavn);
+                cmd.Parameters.AddWithValue("@Email", bruger.Email);
+                cmd.Parameters.AddWithValue("@Brugernavn", bruger.Brugernavn);
                 cmd.Parameters.AddWithValue("@Adgangskode", bruger.Adgangskode);
-                cmd.Parameters.AddWithValue("@Foedselsdato", bruger.Fødselsdato);
+                cmd.Parameters.AddWithValue("@Telefonnummer", bruger.Telefonnummer);
                 cmd.Parameters.AddWithValue("@ErLeder", bruger.ErLeder);
+                cmd.Parameters.AddWithValue("@ErMedarbejder", bruger.ErMedarbejder);
+                cmd.Parameters.AddWithValue("@ErKunde", bruger.ErKunde);
                 cmd.Parameters.AddWithValue("@BrugerId", bruger.BrugerId);
                 cmd.ExecuteNonQuery();
             }
         }
 
-        // Delete: Slet en bruger (Og først det, der peger på brugeren)
-
-        public void Delete(int brugerId)
-        {
-            using (SqlConnection conn = _db.GetConnection())
-            {
-                conn.Open();
-                string sql = "DELETE FROM Tilmelding WHERE BrugerId = @BrugerId;" +
-                             "DELETE FROM AktivitetLeder WHERE BrugerId = @BrugerId;" +
-                             "DELETE FROM BrugerFaerdighed WHERE BrugerId = @BrugerId;" +
-                             "DELETE FROM Bruger WHERE BrugerId = @BrugerId;";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@BrugerId", brugerId);
-                cmd.ExecuteNonQuery();
-            }
-        }
+      
     }
 }

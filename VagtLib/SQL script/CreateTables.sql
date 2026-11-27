@@ -14,11 +14,11 @@ BrugerId int primary key identity(1,1),
 Navn varchar(255) not null,
 Email varchar(255) not null,
 Brugernavn varchar(255) not null,
-Kodeord varchar(255) not null,
-Tlf varchar(20) not null,
+Adgangskode varchar(255) not null,
+Telefonnummer varchar(20) not null,
 ErLeder bit not null,
-Ermedarbejder bit not null,
-Erkunde bit not null
+ErMedarbejder bit not null,
+ErKunde bit not null
 )
 
 Create Table vagtRapport(
