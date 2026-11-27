@@ -8,7 +8,10 @@
 <h2>Opret vagt</h2>
 
 <form method="post" asp-page-handler="Opret">
-
+    <div>
+        <label>Virksomhed</label>
+        <input asp-for="Vagt.Virksomhed" />
+    </div>
    
 
     <div>
@@ -19,6 +22,31 @@
     <div>
         <label>Sluttid</label>
         <input asp-for="Vagt.SlutTid" type="datetime-local" />
+    </div>
+
+    <div>
+        <label>Adresse</label>
+        <input asp-for="Vagt.Adresse" />
+    </div>
+
+    <div>
+        <label>Kundens Opgave Beskrivelse</label>
+        <input asp-for="Vagt.KundensOpgaveBeskrivelse" />
+    </div>
+
+    <div>
+        <label>LSS Beskrivelse</label>
+        <input asp-for="Vagt.LSSBeskrivelse" />
+    </div>
+
+    <div>
+        <label>Krav</label>
+        <input asp-for="Vagt.Krav" />
+    </div>
+
+    <div>
+        <label>Antal Medarbejder</label>
+        <input asp-for="Vagt.AntalMedarbejder" type="number" />
     </div>
 
     <button type="submit">Opret vagt</button>
@@ -52,7 +80,31 @@
         <label>Sluttid</label>
         <input asp-for="Vagt.SlutTid" type="datetime-local" />
     </div>
+    <div>
+        <label>Adresse</label>
+        <input asp-for="Vagt.Adresse" />
+    </div>
 
+    <div>
+        <label>Kundens opgave beskrivelse</label>
+        <input asp-for="Vagt.KundensOpgaveBeskrivelse" />
+    </div>
+    <div>
+        <label>LSS opgave beskrivelse</label>
+        <input asp-for="Vagt.LSSBeskrivelse" />
+    </div>
+
+    <div>
+        <label>Krav</label>
+        <input asp-for="Vagt.Krav" />
+    </div>
+
+    <div>
+        <label>Antal medarbejdere</label>
+        <input asp-for="Vagt.AntalMedarbejder" />
+    </div>
+   
+    
     <button type="submit">Gem ændringer</button>
 
 </form>

@@ -39,7 +39,11 @@ namespace Razor.Vagtselskab.Pages
            eksisterendeVagt.Virksomhed = Vagt.Virksomhed;  
             eksisterendeVagt.StartTid = Vagt.StartTid;
             eksisterendeVagt.SlutTid = Vagt.SlutTid;
-
+            eksisterendeVagt.Adresse = Vagt.Adresse;
+            eksisterendeVagt.KundensOpgaveBeskrivelse = Vagt.KundensOpgaveBeskrivelse;
+            eksisterendeVagt.LSSBeskrivelse = Vagt.LSSBeskrivelse;
+            eksisterendeVagt.Krav = Vagt.Krav;
+            eksisterendeVagt.AntalMedarbejder = Vagt.AntalMedarbejder;
             _vagtRepo.Update(eksisterendeVagt);
 
             return RedirectToPage();
