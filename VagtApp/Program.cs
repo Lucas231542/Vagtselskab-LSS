@@ -4,7 +4,7 @@ using VagtLib;
 using VagtLib.Lib;
 using Razor.Vagtselskab.Repositories;
 
-class Program
+class Program 
 {
     static void Main(string[] args)
     {
