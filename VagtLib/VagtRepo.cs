@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using VagtLib;
-using Microsoft.EntityFrameworkCore;
 using VagtLib.Lib;
 using Microsoft.Data.SqlClient;
 
@@ -108,7 +105,7 @@ namespace Razor.Vagtselskab.Repositories
                 KundensOpgaveBeskrivelse = @KundensOpgaveBeskrivelse,
                 LSSBeskrivelse = @LSSBeskrivelse,
                 Krav = @Krav,
-                AntalMedarbejder = @AntalMedarbejde 
+                AntalMedarbejder = @AntalMedarbejder
                 WHERE VagtId = @VagtId";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
