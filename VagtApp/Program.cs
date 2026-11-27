@@ -4,11 +4,11 @@ using VagtLib;
 using VagtLib.Lib;
 using Razor.Vagtselskab.Repositories;
 
-class Program 
+class Program
 {
     static void Main(string[] args)
     {
-        DBConnecter db = new DBConnecter();
+        DBConnecter db = new DBConnecter("");
         VagtRepo repo = new VagtRepo(db);
 
         Console.WriteLine("===== LSS VAGT TEST =====");
