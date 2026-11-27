@@ -10,30 +10,34 @@ namespace Razor.Vagtselskab.Repositories
 {
     public class VagtRepo
     {
-        private readonly DBConnecter _dbConnecter;
+        private readonly DBConnecter _dbConnecter = new DBConnecter();
 
         public VagtRepo(DBConnecter dbConnecter)
         {
             _dbConnecter = dbConnecter;
         }
 
+
         // Opret vagt
-        public void Add(Vagt vagt)
+        public int Add(Vagt vagt)
         {
             using (SqlConnection conn = _dbConnecter.GetConnection())
             {
                 conn.Open();
 
                 string sql = @"INSERT INTO Vagter
-                (Virksomhed, Dato, StartTid,
-                SlutTid, Adresse, KundensOpgaveBeskrivelse, LSSBeskrivelse, Krav, AntalMedarbejder)
-                VALUES
-                (@Virksomhed, @Dato, @StartTid,
-                @SlutTid, @Adresse, @KundensOpgaveBeskrivelse, @LSSBeskrivelse, @Krav, @AntalMedarbejder)";
+        (Virksomhed, Dato, StartTid, SlutTid, Adresse,
+        KundensOpgaveBeskrivelse, LSSBeskrivelse, Krav,
+        AntalMedarbejder)
+        VALUES
+        (@Virksomhed, @Dato, @StartTid, @SlutTid, @Adresse,
+        @KundensOpgaveBeskrivelse, @LSSBeskrivelse, @Krav,
+        @AntalMedarbejder);
+
+        SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@VagtId", vagt.VagtId);
                     cmd.Parameters.AddWithValue("@Virksomhed", vagt.Virksomhed);
                     cmd.Parameters.AddWithValue("@Dato", vagt.Dato);
                     cmd.Parameters.AddWithValue("@StartTid", vagt.StartTid);
@@ -44,10 +48,11 @@ namespace Razor.Vagtselskab.Repositories
                     cmd.Parameters.AddWithValue("@Krav", vagt.Krav);
                     cmd.Parameters.AddWithValue("@AntalMedarbejder", vagt.AntalMedarbejder);
 
-                    cmd.ExecuteNonQuery();
+                    return (int)cmd.ExecuteScalar();
                 }
             }
         }
+
 
         // Find vagt
         public Vagt GetById(int id)
@@ -103,8 +108,7 @@ namespace Razor.Vagtselskab.Repositories
                 KundensOpgaveBeskrivelse = @KundensOpgaveBeskrivelse,
                 LSSBeskrivelse = @LSSBeskrivelse,
                 Krav = @Krav,
-                AntalMedarbejder = @AntalMedarbejder
-                Status = @Status
+                AntalMedarbejder = @AntalMedarbejder,
                 WHERE VagtId = @VagtId";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
