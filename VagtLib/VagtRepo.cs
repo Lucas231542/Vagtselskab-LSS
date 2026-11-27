@@ -10,13 +10,13 @@ namespace Razor.Vagtselskab.Repositories
 {
     public class VagtRepo
     {
-        private readonly DBConnecter _dbConnecter = new DBConnecter();
+        private readonly DBConnecter _dbConnecter;
 
         public VagtRepo(DBConnecter dbConnecter)
         {
             _dbConnecter = dbConnecter;
         }
-
+        
 
         // Opret vagt
         public int Add(Vagt vagt)
@@ -108,7 +108,7 @@ namespace Razor.Vagtselskab.Repositories
                 KundensOpgaveBeskrivelse = @KundensOpgaveBeskrivelse,
                 LSSBeskrivelse = @LSSBeskrivelse,
                 Krav = @Krav,
-                AntalMedarbejder = @AntalMedarbejder,
+                AntalMedarbejder = @AntalMedarbejde 
                 WHERE VagtId = @VagtId";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))

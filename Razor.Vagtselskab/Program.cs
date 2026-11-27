@@ -3,11 +3,14 @@ using Razor.Vagtselskab.Repositories;
 
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddScoped<DBConnecter>();
-builder.Services.AddScoped<VagtRepo>();
-// Add services to the container.
-builder.Services.AddRazorPages();
 
+// Add services to the container.
+var connectionString = builder.Configuration["DefaultConnection"];
+
+builder.Services.AddScoped<DBConnecter>(serviceProvider =>
+    new DBConnecter(connectionString));
+
+builder.Services.AddScoped<VagtRepo>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
