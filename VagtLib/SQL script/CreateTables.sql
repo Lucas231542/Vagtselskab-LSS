@@ -1,4 +1,4 @@
-﻿Create Table vagtopgave(
+﻿Create Table vagt(
 vagtId int primary key identity(1,1),
 Dato dateTime not null,
 starttid datetime not null,

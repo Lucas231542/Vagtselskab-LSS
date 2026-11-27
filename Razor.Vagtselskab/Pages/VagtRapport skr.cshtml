@@ -1,49 +1,55 @@
 ﻿@page
 @model Razor.Vagtselskab.Pages.VagtRapport_skrModel
-@inject global::VagtLib.IVagtRapportRepo VagtRapportRepo
+@inject global::VagtLib.IVagtRepo VagtRepo
 @{
 }
 
-<div class="row">
-    <div class="col-md-6">
-        <h2>Skriv Vagt Rapport</h2>
-        <form method="post">
-            <div class="form-group">
-                <label asp-for="Rapport"></label>
-                <select asp-for="Rapport" class="form-control">
-                    <option value="">Vælg aktivitetstype</option>
+<h1>Mine vagter</h1>
 
-                    @foreach (var type in Model.AktivitetTyper)
-                    {
-                        <option value="@type.AktivitetTypeId">@type.Navn</option>
-                    }
-                </select>
-                <span asp-validation-for="AktivitetTypeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rapport"></label>
-                <input asp-for="Rapport" class="form-control" />
-                <span asp-validation-for="Rapport" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SlutTid"></label>
-                <input asp-for="SlutTid" class="form-control" />
-                <span asp-validation-for="SlutTid" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sted"></label>
-                <input asp-for="Sted" class="form-control" />
-                <span asp-validation-for="Sted" class="text-danger"></span>
-            </div>
-            <button asp-page-handler="Opret"
-                    type="submit"
-                    class="btn btn-primary">
-                Opret aktivitet
+<p>Her kan du se de vagter, du har tilmeldt dig.</p>
 
-            </button>
+<hr />
+
+@if (Model.Vagter.Count == 0)
+{
+    <p>Du er ikke tilmeldt nogen vagter endnu.</p>
+    <a href="/Vagt" class="btn btn-primary">
+        Se vagter
+    </a>
+}
+else
+{
+    @foreach (var vagt in Model.Vagter)
+    {
+
+        var type = VagtRepo.GetById(vagt.VagtId);
+
+        <div class="card p-3 mb-3">
+            <h4>@type?.Navn</h4>
+
+            <p>
+                Virksomhed: @vagt.Virksomhed <br />
+                Start: @vagt.StartTid.ToString("dd-MM-yyyy HH:mm") <br />
+                Slut: @vagt.SlutTid.ToString("dd-MM-yyyy HH:mm")
+
+            </p>
+            <form method="Post">
+                <input type="hidden"
+                       name="vagtId"
+                       value="@vagt.VagtId" />
+                <textarea asp-for="VagtRapport.Rapport"></textarea>
+                
+                <button asp-page-handler="SkrivRapport"
+                        type="submit"
+                        class="btn btn-danger">
+                    Skriv rapport
+                </button>
+            </form>
 
 
-			
-        </form>
-    </div>
+        </div>
+    }
+}
+
+
 

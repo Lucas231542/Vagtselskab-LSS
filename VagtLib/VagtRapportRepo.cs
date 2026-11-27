@@ -69,8 +69,10 @@ namespace VagtLib
             using (SqlConnection conn = _db.GetConnection())
             {
                 conn.Open();
-                string sql = "INSERT INTO VagtRapport (Rapport) VALUES (@rapport)";
+                string sql = "INSERT INTO VagtRapport (VagtId, BrugerId, Rapport) VALUES (@vagtId, @brugerId, @rapport)";
                 SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@vagtId", vagtRapport.VagtId);
+                cmd.Parameters.AddWithValue("@brugerId", vagtRapport.BrugerId);
                 cmd.Parameters.AddWithValue("@rapport", vagtRapport.Rapport);
                 cmd.ExecuteNonQuery();
             }
