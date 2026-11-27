@@ -19,17 +19,31 @@ namespace VagtLib
         public string Krav { get; set; }
         public int AntalMedarbejder { get; set; }
 
-              
-        public Vagt(int vagtId, DateTime dato, string startTid, string slutTid, string adresse, string kundensOpgaveBeskrivelse, string virksomhed, string lSSBeskrivelse, string krav, int antalMedarbejder)
+
+        // Konstrutør til oprettelse af en ny vagt
+        public Vagt(DateTime dato, string startTid, string slutTid, string adresse, string kundensOpgaveBeskrivelse, string virksomhed, string lSSBeskrivelse, string krav, int antalMedarbejder)
         {
             //tildeling af værdier 
-            VagtId = vagtId;
             Dato = dato;
             StartTid = startTid;
             SlutTid = slutTid;
             Adresse = adresse;
             KundensOpgaveBeskrivelse = kundensOpgaveBeskrivelse;
             Virksomhed = virksomhed; 
+            LSSBeskrivelse = lSSBeskrivelse;
+            Krav = krav;
+            AntalMedarbejder = antalMedarbejder;
+        }
+        // Konstruktør til hentning af en eksisterende vagt 
+        public Vagt(int vagtId, DateTime dato, string startTid, string slutTid, string adresse, string kundensOpgaveBeskrivelse, string virksomhed, string lSSBeskrivelse, string krav, int antalMedarbejder)
+        {
+            VagtId = vagtId;
+            Dato = dato;
+            StartTid = startTid;
+            SlutTid = slutTid;
+            Adresse = adresse;
+            KundensOpgaveBeskrivelse = kundensOpgaveBeskrivelse;
+            Virksomhed = virksomhed;
             LSSBeskrivelse = lSSBeskrivelse;
             Krav = krav;
             AntalMedarbejder = antalMedarbejder;
