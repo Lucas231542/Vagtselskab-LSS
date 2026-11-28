@@ -4,8 +4,12 @@ using System.Text;
 
 namespace VagtLib
 {
+
     public class Vagt
     {
+    public Vagt()
+        {
+        }
         //properties
         public int VagtId { get; set; }
         public DateTime Dato { get; set; }

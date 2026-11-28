@@ -6,15 +6,12 @@ namespace VagtLib
 {
     public interface IVagtRapportRepo
     {
-        public interface IAktivitetRepo
-        {
-            public List<VagtRapport> GetAllVagtRapporter();
+
+            public List<VagtRapport> GetAllVagtRapport();
+
             public VagtRapport GetVagtRapportById(int vagtRapportId);
             public void CreateVagtRapport(VagtRapport vagtRapport);
             public void UpdateVagtRapport(VagtRapport vagtRapport);
             public void DeleteVagtRapport(int vagtRapportId);
-
-
-        }
     }
 }

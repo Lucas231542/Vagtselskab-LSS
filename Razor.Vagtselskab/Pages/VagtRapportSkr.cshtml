@@ -22,10 +22,10 @@ else
     @foreach (var vagt in Model.Vagter)
     {
 
-        var type = VagtRepo.GetById(vagt.VagtId);
+        @* var type = VagtRepo.GetById(vagt.VagtId); *@
 
         <div class="card p-3 mb-3">
-            <h4>@type?.Navn</h4>
+            
 
             <p>
                 Virksomhed: @vagt.Virksomhed <br />

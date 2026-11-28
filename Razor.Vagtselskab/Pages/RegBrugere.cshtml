@@ -1,0 +1,29 @@
+﻿@page
+@model Razor.Vagtselskab.Pages.RegBrugereModel
+@{
+}
+<ul>
+    @foreach (var bruger in Model.RegBrugere)
+    {
+        <li>
+            
+            @bruger.Navn
+            @if (bruger.ErLeder)
+            {
+                <span class="badge bg-primary">Leder</span>
+            }
+
+            else
+            {
+                <span class="badge bg-secondary">Medarbejder</span>
+            }
+        </li>
+    }
+</ul>
+<hr />
+
+<form method="post" asp-page-handler="LogUd" class="mt-3">
+    <button type="submit" class="btn btn-danger">
+        Log ud
+    </button>
+</form>

@@ -31,7 +31,7 @@ namespace Razor.Vagtselskab.Pages
             int? brugerId = HttpContext.Session.GetInt32("BrugerId");
             if (brugerId == null)
             {
-                // Redirect to login page or handle the case when BrugerId is not found in session
+                // Redirect to Login page or handle the case when BrugerId is not found in session
                 return RedirectToPage("/Login");
                 
             }
@@ -42,13 +42,17 @@ namespace Razor.Vagtselskab.Pages
         public IActionResult OnPostSkrivRapport(int vagtId)
         {
         int brugerId = HttpContext.Session.GetInt32("BrugerId").Value;
-
+        if (brugerId == 0)
+        {
+            // Handle the case when BrugerId is 0
+            return RedirectToPage("/Login");
+        }
             VagtRapport.BrugerId = brugerId;
             VagtRapport.VagtId = vagtId;
 
             _vagtRapportRepo.CreateVagtRapport(VagtRapport);
 
-            return Page();
+            return RedirectToPage();
         }
     }
 

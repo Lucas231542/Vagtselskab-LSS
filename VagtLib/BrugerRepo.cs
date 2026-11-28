@@ -5,12 +5,12 @@ using System.Text;
 
 namespace VagtLib
 {
-    public class BrugerRepo
+    public class BrugerRepo : IBrugerRepo
     {
         private readonly DBConnecter _db = new DBConnecter();
 
 
-        private Bruger LavBruger(SqlDataReader r)
+        public Bruger LavBruger(SqlDataReader r)
         // Hjælpemetode: Laver en række fra databasen om til et bruger-objekt
         // Skrives en gang bruges 3 steder (GetAll, GetById, Login) Undgå at gentage kode
         {
@@ -71,7 +71,7 @@ namespace VagtLib
             return null;
         }
 
-        // Read: Tjek brugernavn og adgangskode ved login
+        // Read: Tjek brugernavn og adgangskode ved Login
         public Bruger? Login(string brugernavn, string adgangskode)
         {
             using (SqlConnection conn = _db.GetConnection())

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VagtLib
 {
-    public class TildeleVagtRepo
+    public class TildeleVagtRepo : ITildeleVagtRepo
     {
         private readonly DBConnecter _db = new DBConnecter();
         public List<Vagt> HentMineVagter(int brugerId)
@@ -14,8 +14,8 @@ namespace VagtLib
             using (SqlConnection conn = _db.GetConnection())
             {
                 conn.Open();
-                string sql = @"SELECT v.VagtId, v.StartTid, v.SlutTid, v.Adresse, v. Virksomhed, v.Kundebeskrivelse, v.LSSbeskrivelse, v.Krav, v.AntalMedarbejdere
-                             FROM Vagt v
+                string sql = @"SELECT v.VagtId, v.Dato, v.StartTid, v.SlutTid, v.Adresse, v.KundensOpgaveBeskrivelse, v.Virksomhed, v.LSSbeskrivelse, v.Krav, v.AntalMedarbejder
+                             FROM Vagter v
                              JOIN Tilmelding t ON v.VagtId = t.VagtId
                              WHERE t.BrugerId = @BrugerId
                              ORDER BY v.startTid";
@@ -28,14 +28,15 @@ namespace VagtLib
                     liste.Add(new Vagt
                     {
                         VagtId = r.GetInt32(0),
-                        Starttid = r.GetInt32(1),
-                        SlutTid = r.GetDateTime(2),
-                        Adresse = r.GetDateTime(3),
-                        Virksomhed = r.IsDBNull(4) ? "" : r.GetString(4),
-                        Kundebeskrivelse = r.IsDBNull(5) ? "" : r.GetString(5),
-                        LSSbeskrivelse = r.IsDBNull(6) ? "" : r.GetString(6),
-                        Krav = r.IsDBNull(7) ? "" : r.GetString(7),
-                        AntalMedarbejdere = r.IsDBNull(8) ? 0 : r.GetInt32(8)
+                        Dato = r.GetDateTime(1).Date,
+                        StartTid = r.GetDateTime(2),
+                        SlutTid = r.GetDateTime(3),
+                        Adresse = r.GetString(4),
+                        KundensOpgaveBeskrivelse = r.GetString(5),
+                        Virksomhed = r.GetString(6),
+                        LSSBeskrivelse = r.GetString(7),
+                        Krav = r.GetString(8),
+                        AntalMedarbejder = r.GetInt32(9)
                     });
                 }
             }
